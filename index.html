@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Quick sort</title>
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Inter:wght@400;700&family=Lexend+Deca&family=Merriweather:ital@1&family=Montserrat&family=Nunito:ital,wght@0,400;0,600;0,700;1,300&family=Outfit:wght@200;300;400;500;600;700;800;900&family=Rubik:wght@400;500;600;700;800;900&family=Sacramento&display=swap" rel="stylesheet">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js" integrity="sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/25fd5efbd3.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Quick Sort</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#Home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#Analysis">Analysis</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#Applications">Applications</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!--- Landing page section --->
+  <section class="landing-page position-relative" id="LandingPage">
+    <div class="position-absolute top-0 start-40 heading">
+      <h1 class="title">Quick Sort</h1>
+      <button type="button" class="btn btn-lg bg-dark">
+        <a href="index1.html" style="color:white; text-decoration:none;">Lomuto Vizualization</a></button>
+  <button type="button" class="btn btn-dark btn-lg">
+    <a href="index2.html" style="color:white; text-decoration:none;">Hoare Vizualization</a></button>
+    </div>
+    <div class="position-absolute top-30 end-0 imagediv">
+      <img class="image" src="./images/landingpage.png" alt="">
+    </div>
+
+  </section>
+
+  <!-- Home section -->
+  <section class="home" id="Home">
+    <br />
+    <h2>About Quick Sort:</h2>
+    <p>
+      Like Merge Sort, QuickSort is a Divide and Conquer algorithm. It picks an element as pivot and partitions the given array around the picked pivot. There are many different versions of quickSort that pick pivot in different ways.
+    </p>
+    <ul>
+      <li>
+        Always pick first element as pivot.
+      </li>
+      <li>
+        Always pick last element as pivot.
+      </li>
+      <li>
+        Pick a random element as pivot.
+      </li>
+      <li>
+        Pick median as pivot.
+      </li>
+    </ul>
+    <p>
+      The key process in quickSort is partition(). Target of partitions is, given an array and an element x of array as pivot, put x at its correct position in sorted array and put all smaller elements (smaller than x) before x, and put all greater elements (greater than x) after x. All this should be done in linear time.
+    </p>
+    <br />
+    <br />
+    <h2>Partition Algorithm:</h2>
+    <p>
+      There can be many ways to do partition, following pseudo code adopts the method given in CLRS book. The logic is simple, we start from the leftmost element and keep track of index of smaller (or equal to) elements as i. While traversing, if we find a smaller element, we swap current element with arr[i]. Otherwise we ignore current element.
+    </p>
+    <br />
+    <br />
+    <h2>Lomuto Partition scheme</h2>
+    <p>
+      This scheme is attributed to Nico Lomuto and popularized by Bentley in his book Programming Pearls[15] and Cormen et al. in their book Introduction to Algorithms.[16] In most formulations this scheme chooses as the pivot the last element in the array. The algorithm maintains index i as it scans the array using another index j such that the elements at lo through i-1 (inclusive) are less than the pivot, and the elements at i through j (inclusive) are equal to or greater than the pivot. As this scheme is more compact and easy to understand, it is frequently used in introductory material, although it is less efficient than Hoare's original scheme e.g., when all elements are equal.[17] This scheme degrades to O(n2) when the array is already in order.[10] There have been various variants proposed to boost performance including various ways to select pivot, deal with equal elements, use other sorting algorithms such as Insertion sort for small arrays and so on.
+    </p>
+    <br />
+    <br />
+    <h2>Hoare partition scheme</h2>
+    <p>
+      The original partition scheme described by Tony Hoare uses two pointers (indices into the range) that start at both ends of the array being partitioned, then move toward each other, until they detect an inversion: a pair of elements, one greater than the bound (Hoare's terms for the pivot value) at the first pointer, and one less than the bound at the second pointer; if at this point the first pointer is still before the second, these elements are in the wrong order relative to each other, and they are then exchanged.[18] After this the pointers are moved inwards, and the search for an inversion is repeated; when eventually the pointers cross (the first points after the second), no exchange is performed; a valid partition is found, with the point of division between the crossed pointers (any entries that might be strictly between the crossed pointers are equal to the pivot and can be excluded from both sub-ranges formed). With this formulation it is possible that one sub-range turns out to be the whole original range, which would prevent the algorithm from advancing. Hoare therefore stipulates that at the end, the sub-range containing the pivot element (which still is at its original position) can be decreased in size by excluding that pivot, after (if necessary) exchanging it with the sub-range element closest to the separation; thus, termination of quicksort is ensured.
+    <br />
+With respect to this original description, implementations often make minor but important variations. Notably, the scheme as presented below includes elements equal to the pivot among the candidates for an inversion (so "greater than or equal" and "less than or equal" tests are used instead of "greater than" and "less than" respectively; since the formulation uses do...while rather than repeat...until which is actually reflected by the use of strict comparison operators). While there is no reason to exchange elements equal to the bound, this change allows tests on the pointers themselves to be omitted, which are otherwise needed to ensure they do not run out of range. Indeed, since at least one instance of the pivot value is present in the range, the first advancement of either pointer cannot pass across this instance if an inclusive test is used; once an exchange is performed, these exchanged elements are now both strictly ahead of the pointer that found them, preventing that pointer from running off. (The latter is true independently of the test used, so it would be possible to use the inclusive test only when looking for the first inversion. However, using an inclusive test throughout also ensures that a division near the middle is found when all elements in the range are equal, which gives an important efficiency gain for sorting arrays with many equal elements.) The risk of producing a non-advancing separation is avoided in a different manner than described by Hoare. Such a separation can only result when no inversions are found, with both pointers advancing to the pivot element at the first iteration (they are then considered to have crossed, and no exchange takes place). The division returned is after the final position of the second pointer, so the case to avoid is where the pivot is the final element of the range and all others are smaller than it. Therefore the pivot choice must avoid the final element (in Hoare's description it could be any element in the range); this is done here by rounding down the middle position, using the floor function.[19] This illustrates that the argument for correctness of an implementation of the Hoare partition scheme can be subtle, and it is easy to get it wrong.
+    </p>
+    <br />
+
+    <br />
+    <center>
+      <button type="button" class="btn btn-dark btn-lg">
+        <a href="index1.html" style="color:white; text-decoration:none;">Lomuto Vizualization</a></button>
+  <button type="button" class="btn btn-dark btn-lg">
+    <a href="index2.html" style="color:white; text-decoration:none;">Hoare Vizualization</a></button>
+    </center>
+    <br />
+
+
+  </section>
+
+
+  <!--- Analysis section --->
+  <section class="analysis" id="Analysis">
+    <br />
+    <h2 class="side-heading">Analysis of Quick Sort:</h2>
+    <br />
+    <p>
+      Time taken by QuickSort, in general, can be written as following.
+      <br />
+       T(n) = T(k) + T(n-k-1) + theta(n)
+      <br />
+      The first two terms are for two recursive calls, the last term is for the partition process. k is the number of elements which are smaller than pivot.
+The time taken by QuickSort depends upon the input array and partition strategy. Following are three cases.
+    </p>
+    <br />
+    <h2 class="side-heading">Worst Case:</h2>
+    <p>
+      The worst case occurs when the partition process always picks greatest or smallest element as pivot. If we consider above partition strategy where last element is always picked as pivot, the worst case would occur when the array is already sorted in increasing or decreasing order. Following is recurrence for worst case.
+      <br />
+      T(n) = T(n-1) + theta(n)
+      <br />
+      The solution of above recurrence is theta(n2).
+    </p>
+    <br />
+    <h2 class="side-heading">Best Case:</h2>
+    <p>
+      The best case occurs when the partition process always picks the middle element as pivot. Following is recurrence for best case.
+      <br />
+       T(n) = 2T(n/2) + theta(n)
+      <br />
+      The solution of above recurrence is theta(nLogn).
+    </p>
+    <br />
+
+
+  </section>
+
+
+  <!--- Application section -->
+  <section class="application" id="Applications">
+      <br />
+    <h2>Applications</h2>
+    <br />
+    <ul>
+      <li>
+        Commercial Computing is used in various government and private organizations for the purpose of sorting various data like sorting files by name/date/price, sorting of students by their roll no., sorting of account profile by given id, etc.
+      </li>
+      <li>
+        The sorting algorithm is used for information searching and as Quicksort is the fastest algorithm so it is widely used as a better way of searching.
+      </li>
+      <li>
+        It is used everywhere where a stable sort is not needed.
+      </li>
+      <li>
+        Quicksort is a cache-friendly algorithm as it has a good locality of reference when used for arrays.
+      </li>
+      <li>
+        It is tail -recursive and hence all the call optimization can be done.
+      </li>
+      <li>
+        It is an in-place sort that does not require any extra storage memory.
+      </li>
+      <li>
+        It is used in operational research and event-driven simulation.
+      </li>
+      <li>
+        Numerical computations and in scientific research, for accuracy in calculations most of the efficiently developed algorithm uses priority queue and quick sort is used for sorting.
+      </li>
+      <li>
+        Variants of Quicksort are used to separate the Kth smallest or largest elements.
+      </li>
+      <li>
+        It is used to implement primitive type methods.
+      </li>
+      <li>
+        If data is sorted then the search for information became easy and efficient.
+      </li>
+    </ul>
+  </section>
+
+      <center>
+        <h2>Source</h2>
+        <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/eqo2LxRADhU"></iframe>
+      </div>
+      </center>
+  <br />
+  <br />
+  <!--- Footer section --->
+  <footer class="text-center text-white" style="background-color: #B25068;">
+  <!-- Grid container -->
+  <div class="container pt-4">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="https://www.facebook.com/"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fa-brands fa-facebook"></i></a>
+
+      <!-- Twitter -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="https://twitter.com/"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="https://www.google.com/"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Instagram -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="https://www.instagram.com/"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="https://www.linkedin.com/feed/"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-linkedin"></i
+      ></a>
+      <!-- Github -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="https://github.com/"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center text-dark p-3" style="background-color: #774360;">
+    © 2022 Copyright:
+    <a class="text-dark" href="https://mdbootstrap.com/">Abhilash S Hathwar</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+</body>
+</html>

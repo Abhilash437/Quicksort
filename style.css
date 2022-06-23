@@ -1,0 +1,121 @@
+body{
+  background-color: #E7AB79;
+}
+
+.navbar{
+  background-color: #4C3A51;
+  height:100px;
+}
+.navbar-brand,
+.nav-link{
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+.landing-page{
+  background-color: #4C3A51;
+  height:100vh;
+  width:100%;
+  padding:0;
+}
+
+.title{
+  font-family: 'Rubik', sans-serif;
+  font-weight: 900;
+  font-size: 8rem;
+  color:white;
+}
+
+.image{
+  width:auto;
+  height: 30rem;
+}
+
+.heading{
+  margin-top: 15rem;
+  margin-left: 3rem;
+}
+
+.imagediv{
+  margin-top: 7rem;
+  margin-right: 5rem;
+}
+
+/* Home section */
+.home{
+  padding-top: 4.5rem;
+  background-color: white;
+  padding-bottom: 20px;
+}
+h2{
+  font-family: 'Rubik', sans-serif;
+  color:black;
+  font-weight: 600;
+}
+p,li{
+  font-family: 'Rubik', sans-serif;
+  color:black;
+  font-weight: 300;
+  line-height: 2;
+}
+
+/*Analysis section */
+.analysis{
+  background-color: #E7AB79;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/*Application*/
+.application{
+
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
+
+
+/* Media queries */
+@media only screen and (min-width: 300px) {
+  .title{
+    font-size: 4rem;
+  }
+  .btn{
+    margin-bottom: 20px;
+  }
+  .imagediv{
+    display: none;
+  }
+  .embed-responsive{
+    width:400px;
+    height: 200px;
+  }
+}
+
+@media only screen and (min-width: 700px){
+  .title{
+    font-size: 6rem;
+  }
+  .btn{
+    margin: 5px;
+  }
+  .imagediv{
+    display: none;
+  }
+  .embed-responsive{
+    width:700px;
+    height: 400px;
+  }
+}
+
+@media only screen and (min-width: 1300px){
+  .imagediv{
+    display: block;
+  }
+  .embed-responsive{
+    width:700px;
+    height: 400px;
+  }
+}
