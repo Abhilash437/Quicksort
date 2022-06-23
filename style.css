@@ -81,6 +81,25 @@ p,li{
   padding: 0 20px 0 20px;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #B25068; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #4C3A51; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #774360; 
+}
+
 /* Media queries */
 @media only screen and (min-width: 200px) {
   .title{
