@@ -48,7 +48,6 @@ body{
   padding-top: 4.5rem;
   background-color: white;
   padding-bottom: 20px;
-  width: 100vw;
 }
 h2{
   font-family: 'Rubik', sans-serif;
@@ -79,7 +78,7 @@ p,li{
 .home,
 .application,
 .analysis{
-  margin: 0 20px 0 20px;
+  padding: 0 20px 0 20px;
 }
 
 /* Media queries */
